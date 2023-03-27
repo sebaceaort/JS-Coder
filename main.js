@@ -1,5 +1,5 @@
-const movimientos = [];
-
+const movimientos = JSON.parse(localStorage.getItem("movimientos")) || [];
+mostrarMovimientos(movimientos);
 class Movimiento {
   constructor(tipo, nombre, monto) {
     this.tipo = tipo;
@@ -15,6 +15,7 @@ function crearMovimiento() {
 
   if (validar(tipo, nombre, monto)) {
     movimientos.push(new Movimiento(tipo, nombre, monto));
+    localStorage.setItem("movimientos", JSON.stringify(movimientos));
     limpiaForm();
   }
 
@@ -72,8 +73,14 @@ function armaEncabezado(div) {
   encabezadoDiv.innerHTML = `
       <div class="encabezado-celda">Tipo</div>
       <div class="encabezado-celda">Nombre</div>
-      <div class="encabezado-celda">Monto</div>`;
+      <div class="encabezado-celda">Monto</div>
+      <button class="encabezado-celda clear">Borrar todo</>`;
   div.appendChild(encabezadoDiv);
+
+  const clearBtn = encabezadoDiv.querySelector(".clear");
+  clearBtn.addEventListener("click", () => {
+    limpiarTodo();
+  });
 }
 
 function armaMovimientos(div, array) {
@@ -81,10 +88,20 @@ function armaMovimientos(div, array) {
     const movimientoDiv = document.createElement("div");
     movimientoDiv.classList.add("movimiento-fila");
     movimientoDiv.innerHTML = `
-              <div class="movimiento-celda">${movimiento.tipo === "1" ? "Gasto" : "Ingreso"}</div>
+              <div class="movimiento-celda">${
+                movimiento.tipo === "1" ? "Gasto" : "Ingreso"
+              }</div>
               <div class="movimiento-celda">${movimiento.nombre}</div>
-              <div class="movimiento-celda">$${movimiento.monto.toFixed(2)}</div>`;
+              <div class="movimiento-celda">$${movimiento.monto.toFixed(
+                2
+              )}</div>
+              <button class="borrar-btn movimiento-celda" >x</button>`;
     div.appendChild(movimientoDiv);
+
+    const borrarBtn = movimientoDiv.querySelector(".borrar-btn");
+    borrarBtn.addEventListener("click", () => {
+      borrarMovimiento(movimiento);
+    });
   });
 }
 
@@ -98,6 +115,22 @@ function armaTrailer(div, array) {
         <div class="totales-celda">Total</div>
         <div class="totales-celda">Cantidad Movimientos: ${array.length}</div>
         <div class="totales-celda">$${acum.toFixed(2)}</div>
+        <div class="totales-celda tot-esp"></div>
       `;
   div.appendChild(totalesDiv);
+}
+
+function borrarMovimiento(movimiento) {
+  const index = movimientos.indexOf(movimiento);
+  if (index !== -1) {
+    movimientos.splice(index, 1);
+  }
+  mostrarMovimientos(movimientos);
+  localStorage.setItem("movimientos", JSON.stringify(movimientos));
+}
+
+function limpiarTodo() {
+  movimientos.splice(0, movimientos.length);
+  localStorage.clear();
+  mostrarMovimientos([]);
 }
