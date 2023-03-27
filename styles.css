@@ -1,0 +1,81 @@
+.inputs{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  form label {
+    margin-bottom: 10px;
+  }
+  
+  form input,
+  form select {
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  form button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0062cc;
+  }
+  
+.encabezado-fila {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    background-color: rgb(110, 114, 110);
+  }
+  
+  .encabezado-celda {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .movimiento-fila {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .movimiento-celda {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .movimiento-fila:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  
+  .movimiento-fila:nth-child(odd) {
+    background-color: #fff;
+  }
+  .totales-fila {
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    background-color: rgb(146, 148, 146);
+  }
+  .totales-celda {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+  }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Control de Gastos e Ingresos</title>
+  </head>
+  <body>
+    <section class="inputs">
+      <div>
+        <label for="buscar">Buscar:</label>
+        <input
+          type="text"
+          name="buscar"
+          id="buscar"
+          onkeyup="buscarMovimientos()"
+        />
+      </div>
+      <div>
+        <form id="movimientoForm">
+          <label for="tipo">Tipo:</label>
+          <select name="tipo" id="tipo">
+            <option value="0">Selecione un tipo</option>
+            <option value="1">Gastos</option>
+            <option value="2">Ingresos</option>
+          </select>
+          <label for="nombre">Nombre:</label>
+          <input type="text" name="nombre" id="nombre" />
+          <label for="monto">Monto:</label>
+          <input type="number" name="monto" id="monto" />
+          <button type="button" onclick="crearMovimiento()">
+            Crear Movimiento
+          </button>
+        </form>
+      </div>
+    </section>
+    <div id="Movimientos"></div>
+  </body>
+  <script src="main.js"></script>
+</html>
