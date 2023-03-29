@@ -52,15 +52,24 @@ function validar(tipo, nombre, monto) {
   let isValid = false;
 
   if (tipo !== "1" && tipo !== "2") {
-    alert("Seleccione un tipo de movimiento válido.");
+    Swal.fire({
+      icon: "warning",
+      text: "Seleccione un tipo de movimiento válido.",
+    });
     return isValid;
   }
   if (nombre === "") {
-    alert("Ingrese un nombre para el movimiento.");
+    Swal.fire({
+      icon: "warning",
+      text: "Ingrese un nombre para el movimiento.",
+    });
     return isValid;
   }
   if (monto <= 0 || isNaN(monto)) {
-    alert("Ingrese un monto mayor a cero.");
+    Swal.fire({
+      icon: "warning",
+      text: "Ingrese un monto mayor a cero.",
+    });
     return isValid;
   }
   isValid = true;
