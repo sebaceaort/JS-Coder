@@ -1,3 +1,16 @@
+const divForm = document.getElementById('divForm');
+const divBuscar = document.getElementById('divBuscar');
+const buscar = document.getElementById('buscar');
+divBuscar.style.display='none'
+divForm.style.display='none'
+const btnBuscar = document.getElementById('search');
+const btnAdd = document.getElementById('add');
+
+
+btnBuscar.addEventListener("click",()=>toggleDisplay(divBuscar));
+btnAdd.addEventListener("click",()=>toggleDisplay(divForm));
+buscar.addEventListener("keyup",()=>buscarMovimientos());
+
 const movimientos = JSON.parse(localStorage.getItem("movimientos")) || [];
 mostrarMovimientos(movimientos);
 class Movimiento {
@@ -17,6 +30,7 @@ function crearMovimiento() {
     movimientos.push(new Movimiento(tipo, nombre, monto));
     localStorage.setItem("movimientos", JSON.stringify(movimientos));
     limpiaForm();
+    toggleDisplay(divForm)
   }
 
   mostrarMovimientos(movimientos);
@@ -142,4 +156,13 @@ function limpiarTodo() {
   movimientos.splice(0, movimientos.length);
   localStorage.clear();
   mostrarMovimientos([]);
+}
+
+
+function toggleDisplay(elemento){
+  if (elemento.style.display === "none") {
+    elemento.style.display = "block";
+  } else {
+    elemento.style.display = "none";
+  }
 }
